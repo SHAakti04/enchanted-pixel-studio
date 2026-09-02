@@ -20,6 +20,7 @@ import {
   X,
   Youtube,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { AnandvanButton } from "@/components/anandvan-button";
 
 import hero from "@/assets/anandvan/image-72.png.asset.json";
@@ -59,15 +60,26 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const nav = [
+const nav: Array<[string, string]> = [
   ["Home", "top"], ["About", "about"], ["Our Story", "story"], ["Our Approach", "approach"], ["Stories", "stories"], ["Join Anandvan", "join"],
 ];
 
-const approachItems = [
+const approachItems: Array<[string, string, string]> = [
   ["Discover the world through experience.", "Curiosity is given room to wander. A question can begin anywhere — in soil, in sound, in a story an elder tells.", approachOne.url],
   ["Turn imagination into expression.", "Making is thinking. Hands, materials and mistakes carry a child further than any single correct answer.", approachTwo.url],
   ["Learn through people, culture and community.", "Children, parents, teachers and elders learn from one another. Heritage is lived, not memorised.", approachThree.url],
   ["Build confidence, empathy and independence.", "The whole child matters — emotional world included. Growth is measured in courage, not ranking.", approachFour.url],
+];
+
+const learningPillars: Array<[LucideIcon, string, string]> = [
+  [Lightbulb, "Explore", "Discover through experience"], [Sprout, "Create", "Turn ideas into possibilities"],
+  [Users, "Connect", "Learn with people & culture"], [BookOpen, "Grow", "Build confidence & independence"],
+];
+
+const empowermentPillars: Array<[LucideIcon, string, string]> = [
+  [BookOpen, "Education & Skills", "Access to knowledge, skills and opportunities to discover new possibilities."],
+  [MessageCircleHeart, "Confidence & Voice", "Encouraging women to express themselves, make decisions and lead with confidence."],
+  [Users, "Community & Participation", "Creating spaces to share experiences, support one another and contribute."],
 ];
 
 function Index() {
@@ -138,7 +150,7 @@ function Index() {
           </div>
         </div>
         <div className="section-shell mt-20 grid grid-cols-2 gap-3 md:grid-cols-4">
-          {[[Lightbulb,"Explore","Discover through experience"],[Sprout,"Create","Turn ideas into possibilities"],[Users,"Connect","Learn with people & culture"],[BookOpen,"Grow","Build confidence & independence"]].map(([Icon,title,text], i) => <div key={String(title)} className="reveal-up border-t border-border p-5 text-center" style={{animationDelay:`${i*80}ms`}}><Icon className="mx-auto h-10 w-10 text-coral" /><h3 className="mt-4 font-display text-2xl text-forest">{String(title)}</h3><p className="mt-2 text-sm text-muted-foreground">{String(text)}</p></div>)}
+          {learningPillars.map(([Icon,title,text], i) => <div key={title} className="reveal-up border-t border-border p-5 text-center" style={{animationDelay:`${i*80}ms`}}><Icon className="mx-auto h-10 w-10 text-coral" /><h3 className="mt-4 font-display text-2xl text-forest">{title}</h3><p className="mt-2 text-sm text-muted-foreground">{text}</p></div>)}
         </div>
       </section>
 
@@ -173,7 +185,7 @@ function Index() {
 
       <section className="relative overflow-hidden bg-paper py-20 lg:py-28">
         <div className="section-shell grid items-center gap-12 lg:grid-cols-2"><div className="relative reveal-up"><img src={women.url} alt="Women learning together at Anandvan" className="h-[540px] w-full rounded-tr-[9rem] object-cover object-left shadow-[var(--shadow-soft)]" /></div><div className="reveal-up"><h2 className="display-title text-5xl text-forest sm:text-6xl">Empowering Women.<br />Strengthening Communities.</h2><p className="mt-6 text-lg leading-8 text-muted-foreground">When women have the space to learn, express, lead and grow, their growth becomes a strength for the communities around them.</p></div></div>
-        <div className="mt-16 bg-sun py-12"><div className="section-shell"><h3 className="text-center font-display text-3xl text-secondary-foreground">Empowerment Begins With Opportunity.</h3><div className="mt-8 grid gap-5 md:grid-cols-3">{[[BookOpen,"Education & Skills","Access to knowledge, skills and opportunities to discover new possibilities."],[MessageCircleHeart,"Confidence & Voice","Encouraging women to express themselves, make decisions and lead with confidence."],[Users,"Community & Participation","Creating spaces to share experiences, support one another and contribute."]].map(([Icon,title,text])=><div key={String(title)} className="reveal-up rounded-lg bg-background p-7 text-center shadow-[var(--shadow-soft)]"><Icon className="mx-auto h-8 w-8 text-coral"/><h4 className="mt-4 font-semibold text-forest">{String(title)}</h4><p className="mt-3 text-sm leading-6 text-muted-foreground">{String(text)}</p></div>)}</div></div></div>
+        <div className="mt-16 bg-sun py-12"><div className="section-shell"><h3 className="text-center font-display text-3xl text-secondary-foreground">Empowerment Begins With Opportunity.</h3><div className="mt-8 grid gap-5 md:grid-cols-3">{empowermentPillars.map(([Icon,title,text])=><div key={title} className="reveal-up rounded-lg bg-background p-7 text-center shadow-[var(--shadow-soft)]"><Icon className="mx-auto h-8 w-8 text-coral"/><h4 className="mt-4 font-semibold text-forest">{title}</h4><p className="mt-3 text-sm leading-6 text-muted-foreground">{text}</p></div>)}</div></div></div>
       </section>
 
       <section id="stories" className="py-20"><div className="section-shell"><div className="flex items-end justify-between"><h2 className="display-title text-5xl text-forest">Life At Anandvan</h2><span className="text-sm text-muted-foreground">Explore more →</span></div><div className="mt-10 grid gap-5 sm:grid-cols-3">{[lifeOne,lifeTwo,lifeThree].map((image,i)=><div key={image.url} className={`reveal-up overflow-hidden rounded-lg ${i===1?'sm:-translate-y-5':''}`}><img src={image.url} alt="Life at Anandvan" className="aspect-[4/3] w-full object-cover transition duration-700 hover:scale-105" /></div>)}</div>
@@ -191,7 +203,7 @@ function Index() {
   );
 }
 
-const testimonials = [
+const testimonials: Array<[string, string, string]> = [
   ["Anandvan is a template for future schools. It honors the whole child — their environment, community, elders, and emotional world.","Allie Johnson","Educator and mother"],
   ["We are not taught that we can shape our own life — but we can. Anandvan gives children the freedom to learn, make mistakes, and be accepted as they are.","Mona Kharaj","Community Supporter"],
   ["I have worked in education since 1992, and Anandvan stands out as a truly community-centric initiative.","Lee Culver Richards","School Builder"],
