@@ -101,7 +101,9 @@ function Index() {
       </header>
 
       <section id="top" className="relative mt-20 min-h-[calc(100svh-5rem)] overflow-hidden bg-paper">
-        <img src={hero.url} alt="Women and children of the Anandvan learning community" className="hero-drift absolute inset-0 h-full w-full object-cover object-center" />
+        <div className="absolute inset-0 scale-x-[-1] overflow-hidden">
+          <img src={hero.url} alt="Women and children of the Anandvan learning community" className="hero-drift h-full w-full object-cover object-left" />
+        </div>
         <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--paper)_5%,color-mix(in_oklab,var(--paper)_92%,transparent)_38%,transparent_72%)]" />
         <div className="section-shell relative z-10 flex min-h-[calc(100svh-5rem)] items-center py-20">
           <div className="max-w-2xl animate-[reveal-up_1s_cubic-bezier(.2,.8,.2,1)_both]">
